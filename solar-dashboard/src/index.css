@@ -1,0 +1,47 @@
+@import 'leaflet/dist/leaflet.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer components {
+  .cloud-button {
+    @apply relative bg-white text-sky-800 px-4 py-2 rounded-full shadow-md hover:scale-110 transition-all duration-200;
+  }
+
+  .cloud-button:hover::after {
+    content: '';
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-80;
+    background-image: url('/public/assets/images/sun.svg');
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.sky-bg {
+  background: linear-gradient(to bottom, #7dd3fc, #3b82f6);
+  position: relative;
+  overflow: hidden;
+}
+
+.cloud-drift {
+  position: absolute;
+  top: 20%;
+  width: 100px;
+  height: 50px;
+  background: url('/public/assets/images/cloud.svg') no-repeat;
+  animation: drift 60s linear infinite;
+}
+
+@keyframes drift {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(100vw); }
+}
