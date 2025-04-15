@@ -20,7 +20,7 @@ body {
   .cloud-button:hover::after {
     content: '';
     @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-80;
-    background-image: url('/assets/images/sun.svg');
+    background-image: url('/public/assets/images/sun.svg');
     width: 24px;
     height: 24px;
   }
@@ -42,7 +42,7 @@ body {
   top: 20%;
   width: 100px;
   height: 50px;
-  background: url('/assets/images/cloud.svg') no-repeat;
+  background: url('/public/assets/images/cloud.svg') no-repeat;
   animation: drift 60s linear infinite;
 }
 

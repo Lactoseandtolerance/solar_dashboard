@@ -3,7 +3,7 @@ import React from 'react';
 // Audio feedback for buttons
 const playChime = () => {
   try {
-    const audio = new Audio('/assets/sounds/chime.mp3');
+    const audio = new Audio('/public/assets/sounds/chime.mp3');
     audio.volume = 0.3;
     audio.play();
     
@@ -34,7 +34,7 @@ const Navbar = ({ activeTab, setActiveTab }) => {
     <nav className="sticky top-0 bg-sky-400 p-4 flex flex-wrap justify-center gap-4 shadow-lg z-10">
       <div className="flex items-center mr-4">
         <img 
-          src="/assets/images/sun.svg" 
+          src="/public/assets/images/sun.svg" 
           width="30" 
           height="30" 
           className="inline-block mr-2" 

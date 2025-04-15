@@ -1,0 +1,14 @@
+Found Python version 3.11.0 (python3.11).
+
+Azure Functions Core Tools
+Core Tools Version:       4.0.7030 Commit hash: N/A +bb4c949899cd5659d6bfe8b92cc923453a2e8f88 (64-bit)
+Function Runtime Version: 4.1037.0.23568
+
+[2025-04-15T02:53:53.318Z] Worker process started and initialized.
+
+Functions:
+
+	GetSolarData: [GET,POST] http://localhost:7071/api/GetSolarData
+
+For detailed output, run func with --verbose flag.
+[2025-04-15T02:53:59.465Z] Host lock lease acquired by instance ID '000000000000000000000000B17A254B'.

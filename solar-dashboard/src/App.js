@@ -26,7 +26,7 @@ function App() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await fetch('https://solar-dashboard-functions.azurewebsites.net/api/GetSolarData');
+        const response = await fetch('http://localhost:7071/api/GetSolarData');
         if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
         setSolarData(data);
