@@ -1,37 +1,62 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, LineElement, PointElement, LinearScale, TimeScale, Title, Tooltip, Legend } from 'chart.js';
+import 'chartjs-adapter-date-fns';
+import './ChartPanel.css';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(LineElement, PointElement, LinearScale, TimeScale, Title, Tooltip, Legend);
 
 const ChartPanel = ({ data, highContrast }) => {
   const chartData = {
-    labels: data.map((d) => new Date(d.timestamp * 1000).toLocaleTimeString()),
     datasets: [
       {
         label: 'Energy (kWh)',
-        data: data.map((d) => d.energy),
-        borderColor: highContrast ? '#fff' : 'rgba(59, 130, 246, 1)',
-        backgroundColor: highContrast ? '#fff' : 'rgba(59, 130, 246, 0.2)',
-        fill: true,
+        data: data.map(item => ({ x: item.timestamp, y: item.energy })),
+        borderColor: highContrast ? '#fff' : '#1e3a8a',
+        backgroundColor: highContrast ? '#fff' : '#1e3a8a',
+        fill: false,
+      },
+      {
+        label: 'Temperature (°C)',
+        data: data.map(item => ({ x: item.timestamp, y: item.temperature })),
+        borderColor: highContrast ? '#ccc' : '#b91c1c',
+        backgroundColor: highContrast ? '#ccc' : '#b91c1c',
+        fill: false,
       },
     ],
   };
 
   const options = {
     responsive: true,
-    plugins: { legend: { labels: { color: highContrast ? '#fff' : '#000' } } },
     scales: {
-      x: { ticks: { color: highContrast ? '#fff' : '#000' } },
-      y: { ticks: { color: highContrast ? '#fff' : '#000' } },
+      x: {
+        type: 'time',
+        time: { unit: 'hour' },
+      },
+      y: { beginAtZero: true },
+    },
+    plugins: {
+      legend: { display: true },
     },
   };
 
   return (
-    <div className={highContrast ? 'bg-black p-4' : 'bg-white p-4'}>
+    <div className='chart-panel' role='region' aria-label='Solar energy charts'>
       <Line data={chartData} options={options} />
     </div>
   );
+};
+
+ChartPanel.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      timestamp: PropTypes.string.isRequired,
+      energy: PropTypes.number.isRequired,
+      temperature: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  highContrast: PropTypes.bool.isRequired,
 };
 
 export default ChartPanel;
