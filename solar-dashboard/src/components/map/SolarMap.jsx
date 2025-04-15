@@ -30,7 +30,7 @@ function HeatmapLayer({ data }) {
     return () => {
       map.removeLayer(heatLayer);
     };
-  }, [map, data]);
+  }, [map, data]); 
 
   return null;
 }
